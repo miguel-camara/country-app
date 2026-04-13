@@ -1,0 +1,13 @@
+<!-- country-search-input -->
+<search-input placeholder="Buscar por capital" (value)="onSearch($event)" />
+
+<!-- country-list -->
+<country-list />
+
+@if (isActive()) {
+  <div class="toast">
+    <div class="alert alert-info">
+      <span>New message arrived.</span>
+    </div>
+  </div>
+}
