@@ -1,10 +1,11 @@
 import { Component, inject, linkedSignal } from '@angular/core';
-import { CountryListComponent } from "../../components/country-list/country-list.component";
-import { Region } from '../../interfaces/region.type';
-import { CountryService } from '../../services/country.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { of } from 'rxjs';
+import { Region } from '@country/interfaces/region.type';
+import { CountryListComponent } from '@country/components/country-list/country-list.component';
+import { CountryService } from '@country/services/country.service';
+import { LoadingComponent } from '@shared/components/loading/loading';
 
 function validateQueryParam(queryParam: string): Region {
   queryParam = queryParam.toLowerCase();
@@ -18,16 +19,13 @@ function validateQueryParam(queryParam: string): Region {
     antarctic: 'Antarctic',
   };
 
-  console.log(validRegions[queryParam] ?? 'Americas');
-
-
   return validRegions[queryParam] ?? 'Americas';
 }
 
 
 @Component({
   selector: 'by-region-page',
-  imports: [CountryListComponent],
+  imports: [CountryListComponent, LoadingComponent],
   templateUrl: './by-region-page.component.html',
 })
 export class ByRegionPageComponent {

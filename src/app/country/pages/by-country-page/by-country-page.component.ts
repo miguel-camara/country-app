@@ -1,22 +1,18 @@
-import { Component, inject, linkedSignal, signal } from '@angular/core';
-import { SearchInputComponent } from "../../components/search-input/search-input.component";
-import { CountryListComponent } from "../../components/country-list/country-list.component";
-import { CountryService } from '../../services/country.service';
+import { Component, inject, linkedSignal } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { of } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Country } from '../../interfaces/country.interface';
+import { LoadingComponent } from '@shared/components/loading/loading';
+import { SearchInputComponent } from '@country/components/search-input/search-input.component';
+import { CountryListComponent } from '@country/components/country-list/country-list.component';
+import { CountryService } from '@country/services/country.service';
 
 @Component({
   selector: 'by-country-page',
-  imports: [SearchInputComponent, CountryListComponent],
+  imports: [SearchInputComponent, CountryListComponent, LoadingComponent],
   templateUrl: './by-country-page.component.html'
 })
 export class ByCountryPageComponent {
-
-  isLoading = signal(false);
-  isError = signal<string | null>(null);
-  countries = signal<Country[]>([]);
 
   countryService = inject(CountryService);
   activatedRoute = inject(ActivatedRoute);
@@ -25,36 +21,20 @@ export class ByCountryPageComponent {
   queryParam = this.activatedRoute.snapshot.queryParamMap.get('query') ?? '';
   query = linkedSignal(() => this.queryParam);
 
-  constructor() {
-    this.onSearch(this.query());
-  }
 
-  onSearch($query: string) {
-    if (this.isLoading()) return;
+  countryResource = rxResource({
+    params: () => ({ query: this.query() }),
+    stream: ({ params }) => {
 
-    this.isLoading.set(true);
-    this.isError.set(null);
+      if (!params.query) return of([]);
 
-    this.router.navigate(['/country/by-country'], {
-      queryParams: {
-        query: $query,
-      },
-    });
-
-    this.countryService.searchByCountry($query)
-      .subscribe({
-        next: (countries) => {
-          this.setValues(countries)
+      this.router.navigate(['/country/by-country'], {
+        queryParams: {
+          query: params.query,
         },
-        error: (err: Error) => {
-          this.setValues([], err.message);
-        }
       });
-  }
 
-  setValues(countries: Country[], err: string | null = null) {
-    this.isLoading.set(false);
-    this.countries.set(countries);
-    this.isError.set(err);
-  }
+      return this.countryService.searchByCountry(params.query);
+    },
+  });
 }

@@ -1,9 +1,16 @@
 <search-input
+  (value)="query.set($event)"
   placeholder="Buscar por país"
-  (value)="onSearch($event)"
-  [debounceTime]="750"
   [initialValue]="query()"
-  [isLoading]="isLoading()"
+  [debounceTime]="750"
 />
 
-<country-list [countries]="countries()" [errorMessage]="isError()" [isLoading]="isLoading()" />
+@if (countryResource.hasValue()) {
+  <country-list [countries]="countryResource.value()" [hasValues]="true" />
+} @else {
+  <country-list [errorMessage]="countryResource.error()?.message" />
+}
+
+@if (countryResource.isLoading()) {
+  <app-loading />
+}

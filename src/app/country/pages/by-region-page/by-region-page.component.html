@@ -5,7 +5,7 @@
   <div class="flex-col">
     @for (region of regions; track region) {
       <button
-        class="btn mr-2 btn-outline w-[100px]"
+        class="btn mr-2 btn-outline w-25"
         (click)="selectedRegion.set(region)"
         [class.btn-primary]="selectedRegion() === region"
       >
@@ -15,9 +15,13 @@
   </div>
 </section>
 
-<!-- country-list -->
-<country-list
-  [countries]="countryResource.value() ?? []"
-  [errorMessage]="countryResource.error()"
-  [isLoading]="countryResource.isLoading()"
-/>
+@if (countryResource.hasValue()) {
+  <!-- country-list -->
+  <country-list [countries]="countryResource.value()" [hasValues]="true" />
+} @else {
+  <country-list [errorMessage]="countryResource.error()?.message" />
+}
+
+@if (countryResource.isLoading()) {
+  <app-loading />
+}

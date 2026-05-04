@@ -1,21 +1,18 @@
-import { Component, inject, linkedSignal, signal } from '@angular/core';
-import { SearchInputComponent } from "../../components/search-input/search-input.component";
-import { CountryListComponent } from "../../components/country-list/country-list.component";
-import { CountryService } from '../../services/country.service';
-import { Country } from '../../interfaces/country.interface';
+import { Component, inject, linkedSignal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { rxResource } from '@angular/core/rxjs-interop';
+import { of } from 'rxjs';
+import { LoadingComponent } from '@shared/components/loading/loading';
+import { CountryListComponent } from '@country/components/country-list/country-list.component';
+import { SearchInputComponent } from '@country/components/search-input/search-input.component';
+import { CountryService } from '@country/services/country.service';
 
 @Component({
   selector: 'by-capital-page',
-  imports: [SearchInputComponent, CountryListComponent],
+  imports: [SearchInputComponent, CountryListComponent, LoadingComponent],
   templateUrl: './by-capital-page.component.html',
 })
 export class ByCapitalPageComponent {
-
-  isLoading = signal(false);
-  isError = signal<string | null>(null);
-  countries = signal<Country[]>([]);
-
   countryService = inject(CountryService);
   activatedRoute = inject(ActivatedRoute);
   router = inject(Router);
@@ -23,64 +20,22 @@ export class ByCapitalPageComponent {
   queryParam = this.activatedRoute.snapshot.queryParamMap.get('query') ?? '';
   query = linkedSignal(() => this.queryParam);
 
-  constructor() {
-    this.onSearch(this.query());
-  }
+  countryResource = rxResource({
+    params: () => ({ query: this.query() }),
+    stream: ({ params }) => {
 
-  onSearch($query: string) {
-    if (this.isLoading()) return;
+      if (!params.query) return of([]);
 
-    this.isLoading.set(true);
-    this.isError.set(null);
+      this.router.navigate(['/country/by-capital'], {
+        queryParams: {
+          query: params.query,
+        },
+      });
 
-    this.router.navigate(['/country/by-capital'], {
-      queryParams: {
-        query: $query,
-      },
-    });
-
-    this.countryService.searchByCapital($query).subscribe({
-      next: (countries) => {
-        this.setValues(countries)
-      },
-      error: (err: Error) => {
-        this.setValues([])
-        this.isError.set(err.message);
-      }
-    });
-  }
-
-  setValues(countries: Country[]) {
-    this.isLoading.set(false);
-    this.countries.set(countries);
-  }
-
-  //  Origin
-  // countryResource = rxResource({
-  //   params: () => ({ query: this.query() }),
-  //   stream: ({ params }) => {
-  //     if (!params.query) return of([]);
-
-  //     this.router.navigate(['/country/by-capital'], {
-  //       queryParams: {
-  //         query: params.query,
-  //       },
-  //     });
-
-  //     return this.countryService.searchByCapital(params.query);
-  //   },
-  // });
+      return this.countryService.searchByCapital(params.query);
+    },
+  });
 
 
-  // countryResource = resource({
-  //   params: () => ({ query: this.query() }),
-  //   loader: async ({ params }) => {
-  //     if (!params.query) return [];
-
-  //     return await firstValueFrom(
-  //       this.countryService.searchByCapital(params.query)
-  //     );
-  //   },
-  // });
 
 }

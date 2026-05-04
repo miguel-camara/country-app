@@ -1,7 +1,7 @@
-import { Component, input, effect } from '@angular/core';
-import { Country } from '../../interfaces/country.interface';
+import { Component, input } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { Country } from '@country/interfaces/country.interface';
 
 @Component({
   selector: 'country-list',
@@ -9,9 +9,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './country-list.component.html',
 })
 export class CountryListComponent {
-  countries = input.required<Country[]>();
-
-  errorMessage = input<string | unknown | null>();
-  isLoading = input<boolean>(false);
-
+  countries = input<Country[]>([]);
+  errorMessage = input<string | unknown | null>('');
+  hasValues = input<boolean>(false);
 }
