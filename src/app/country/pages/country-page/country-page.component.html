@@ -1,10 +1,9 @@
-<!--  -->
 @if (countryResource.hasValue()) {
   <country-information [country]="countryResource.value()!" />
+} @else if (countryResource.error()?.message) {
+  <p class="text-error">{{ countryResource.error()?.message }}</p>
+} @else if (countryResource.isLoading()) {
+  <app-loading />
 } @else {
   <not-found />
-}
-
-@if (countryResource.isLoading()) {
-  <app-loading />
 }
