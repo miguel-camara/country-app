@@ -18,7 +18,7 @@ Clone the project
 Go to the project directory
 
 ```bash
-  cd blackjack-angular
+  cd country-app
 ```
 
 Install dependencies
