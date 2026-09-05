@@ -6,7 +6,7 @@
   --paper: #e8dcc8;
   --paper-ink: #1c2c1c;
   --brass: #b08644;
-  --brass-deep: #5a411d;
+  --brass-deep: #e8dcc8;
   --forest: #2f3824;
   --atlas-red: #8b2e2e;
   --sea: #6f8887;
@@ -404,7 +404,7 @@ a {
   display: grid;
   place-items: center;
   padding: 2rem;
-  background: var(--wall);
+  /* background: var(--wall); */
 }
 
 .home-card {

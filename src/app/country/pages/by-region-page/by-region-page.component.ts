@@ -26,13 +26,17 @@ export class ByRegionPageComponent {
     this.activatedRoute.queryParamMap.pipe(
       map((params) => validateQueryParam(params.get('region') ?? '')),
     ),
-    { initialValue: validateQueryParam(this.activatedRoute.snapshot.queryParamMap.get('region') ?? '') },
+    {
+      initialValue: validateQueryParam(
+        this.activatedRoute.snapshot.queryParamMap.get('region') ?? '',
+      ),
+    },
   );
 
   selectedCode = signal<string | null>(null);
   regionLabel = computed(() => REGION_LABELS[this.selectedRegion()]);
   mapSrc = computed(() => REGION_MAPS[this.selectedRegion()]);
-  showPin = computed(() => this.selectedRegion() === 'Americas' && Boolean(this.selectedCode()));
+  // showPin = computed(() => this.selectedRegion() === 'Americas' && Boolean(this.selectedCode()));
   featuredCodes = ['MX', 'BZ', 'GT'] as const;
 
   pinnedCountries = computed(() => {
@@ -42,7 +46,10 @@ export class ByRegionPageComponent {
     const featured = this.featuredCodes
       .map((code) => countries.find((country) => country.cca2 === code))
       .filter((country): country is NonNullable<typeof country> => Boolean(country));
-    const rest = countries.filter((country) => !this.featuredCodes.includes(country.cca2 as (typeof this.featuredCodes)[number]));
+    const rest = countries.filter(
+      (country) =>
+        !this.featuredCodes.includes(country.cca2 as (typeof this.featuredCodes)[number]),
+    );
     return [...featured, ...rest];
   });
 
