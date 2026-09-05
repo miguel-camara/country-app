@@ -32,11 +32,9 @@ export class CountryService {
     }
 
     return this.getCountries(`${API_URL}/capitals`, { q: query }).pipe(
-      tap((countries) => this.queryCacheCapital.set(query, countries)),
-      catchError(() => {
-        return throwError(
-          () => new Error(`No se pudo obtener capitales con esa query "${query}"`),
-        );
+      tap((countries: Country[]) => this.queryCacheCapital.set(query, countries)),
+      catchError((error: Error) => {
+        return throwError(() => new Error(`No se pudo obtener capitales con esa query "${query}"`));
       }),
     );
   }
@@ -49,9 +47,9 @@ export class CountryService {
     }
 
     return this.getCountries(`${API_URL}/name`, { q: query }).pipe(
-      tap((countries) => this.queryCacheCountry.set(query, countries)),
+      tap((countries: Country[]) => this.queryCacheCountry.set(query, countries)),
       delay(2000),
-      catchError(() => {
+      catchError((error: Error) => {
         return throwError(() => new Error(`No se pudo obtener países con ese query "${query}"`));
       }),
     );
@@ -63,8 +61,8 @@ export class CountryService {
     }
 
     return this.getCountries(API_URL, { region, limit: PAGE_LIMIT }).pipe(
-      tap((countries) => this.queryCacheRegion.set(region, countries)),
-      catchError(() => {
+      tap((countries: Country[]) => this.queryCacheRegion.set(region, countries)),
+      catchError((error: Error) => {
         return throwError(() => new Error(`No se pudo obtener países con ese query "${region}"`));
       }),
     );
@@ -72,8 +70,8 @@ export class CountryService {
 
   searchCountryByAlphaCode(code: string) {
     return this.getCountries(`${API_URL}/code`, { q: code }).pipe(
-      map((countries) => countries.at(0)),
-      catchError(() => {
+      map((countries: Country[]) => countries.at(0)),
+      catchError((error: Error) => {
         return throwError(() => new Error(`No se pudo obtener países con ese código "${code}"`));
       }),
     );
@@ -89,7 +87,9 @@ export class CountryService {
         params,
       })
       .pipe(
-        map((resp) => CountryMapper.mapRestCountryArrayToCountryArray(resp.data.objects ?? [])),
+        map((resp: RESTCountriesResponse) =>
+          CountryMapper.mapRestCountryArrayToCountryArray(resp.data.objects ?? []),
+        ),
       );
   }
 }
