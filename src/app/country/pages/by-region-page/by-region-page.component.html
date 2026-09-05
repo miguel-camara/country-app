@@ -1,27 +1,25 @@
-<h1 class="text-2xl">Por región</h1>
-<h3 class="text-lg">Seleccione una región</h3>
+<div class="map-stage">
+  <img class="map-plate" [src]="mapSrc()" [alt]="'Lámina de ' + regionLabel()" />
+  <img class="compass" src="/assets/plates/compass.png" alt="" />
+  @if (showPin()) {
+    <img class="pin" src="/assets/plates/pin-mexico.png" alt="" />
+  }
+</div>
 
-<section class="row mt-2">
-  <div class="flex-col">
-    @for (region of regions; track region) {
-      <button
-        class="btn mr-2 btn-outline w-25"
-        (click)="selectedRegion.set(region)"
-        [class.btn-primary]="selectedRegion() === region"
-      >
-        {{ region }}
-      </button>
-    }
-  </div>
-</section>
+<aside class="rail">
+  <h1 class="rail-title">{{ regionLabel() }}</h1>
 
-@if (countryResource.hasValue()) {
-  <!-- country-list -->
-  <country-list [countries]="countryResource.value()" [hasValues]="true" />
-} @else {
-  <country-list [errorMessage]="countryResource.error()?.message" />
-}
+  @if (countryResource.isLoading()) {
+    <p class="loading-copy">Desplegando la lámina…</p>
+  }
 
-@if (countryResource.isLoading()) {
-  <app-loading />
-}
+  @if (countryResource.hasValue()) {
+    <country-list
+      [countries]="pinnedCountries()"
+      [hasValues]="true"
+      [(selectedCode)]="selectedCode"
+    />
+  } @else {
+    <country-list [errorMessage]="countryResource.error()?.message" />
+  }
+</aside>

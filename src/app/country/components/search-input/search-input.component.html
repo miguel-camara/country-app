@@ -1,17 +1,13 @@
-<section class="flex flex-row gap-2 mt-2">
+<section class="lookup">
   <input
-    title="input"
-    type="text"
-    class="input input-bordered mr-2 w-56"
+    type="search"
     [placeholder]="placeholder()"
     autofocus
     #txtSearch
     (keyup.enter)="value.emit(txtSearch.value)"
     (keyup)="inputValue.set(txtSearch.value)"
     [value]="inputValue()"
+    [attr.aria-label]="placeholder()"
   />
-
-  <button class="btn btn-primary" [disabled]="isLoading()" (click)="value.emit(txtSearch.value)">
-    Buscar
-  </button>
+  <button type="button" [disabled]="isLoading()" (click)="value.emit(txtSearch.value)">Buscar</button>
 </section>

@@ -1,68 +1,27 @@
-<section class="mt-5">
-  @if (hasValues()) {
-    <table class="table table-md mt-2 w-full">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Ícono</th>
-          <th>Bandera</th>
-          <th>Nombre</th>
-          <th>Capital</th>
-          <th>Población</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (country of countries(); track country.cca2; let index = $index) {
-          <tr>
-            <td>{{ index + 1 }}</td>
-            <td>{{ country.flag }}</td>
-            <td>
-              <img title="img" [src]="country.flagSvg" [alt]="country.name" class="w-10" />
-            </td>
-            <td>{{ country.name }}</td>
-            <td>{{ country.capital }}</td>
-            <td>
-              <span class="badge badge-secondary">
-                {{ country.population | number }}
-              </span>
-            </td>
-            <td>
-              <a [routerLink]="['/country/by', country.cca2]" class="link-primary cursor-pointer"
-                >Más información</a
-              >
-            </td>
-          </tr>
-        } @empty {
-          <tr>
-            <td colspan="8" class="text-center">
-              <span class="text-2xl italic">No se encontraron resultados</span>
-            </td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  } @else if (errorMessage()) {
-    <div class="flex justify-center items-center h-[50vh] w-full">
-      <div role="alert" class="alert alert-error">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6 shrink-0 stroke-current"
-          fill="none"
-          viewBox="0 0 24 24"
+@if (errorMessage()) {
+  <p class="error-copy" role="alert">{{ errorMessage() }}</p>
+} @else if (hasValues() && countries().length === 0) {
+  <p class="empty-copy">Esta lámina no tiene destinos para esa búsqueda.</p>
+} @else if (hasValues()) {
+  <ul class="slips">
+    @for (country of countries(); track country.cca2) {
+      <li>
+        <article
+          class="slip"
+          [class.is-selected]="selectedCode() === country.cca2"
+          (click)="selectedCode.set(country.cca2)"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
-        <span>No se encontraron resultados</span>
-        <span>
-          {{ errorMessage() }}
-        </span>
-      </div>
-    </div>
-  }
-</section>
+          <img class="slip-flag" [src]="country.flagSvg" [alt]="'Bandera de ' + country.name" />
+          <h3>{{ country.name }}</h3>
+          <dl>
+            <dt>Capital</dt>
+            <dd>{{ country.capital || '—' }}</dd>
+            <dt>Población</dt>
+            <dd>{{ country.population | number }}</dd>
+          </dl>
+          <a class="slip-open" [routerLink]="['/country/by', country.cca2]">Abrir ficha</a>
+        </article>
+      </li>
+    }
+  </ul>
+}

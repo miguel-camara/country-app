@@ -2,15 +2,15 @@ import { Component, inject, linkedSignal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { of } from 'rxjs';
-import { LoadingComponent } from '@shared/components/loading/loading';
 import { CountryListComponent } from '@country/components/country-list/country-list.component';
 import { SearchInputComponent } from '@country/components/search-input/search-input.component';
 import { CountryService } from '@country/services/country.service';
 
 @Component({
   selector: 'by-capital-page',
-  imports: [SearchInputComponent, CountryListComponent, LoadingComponent],
+  imports: [SearchInputComponent, CountryListComponent],
   templateUrl: './by-capital-page.component.html',
+  host: { class: 'sheet-page' },
 })
 export class ByCapitalPageComponent {
   countryService = inject(CountryService);

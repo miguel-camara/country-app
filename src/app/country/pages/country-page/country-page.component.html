@@ -1,9 +1,9 @@
 @if (countryResource.hasValue()) {
   <country-information [country]="countryResource.value()!" />
 } @else if (countryResource.error()?.message) {
-  <p class="text-error">{{ countryResource.error()?.message }}</p>
+  <p class="error-copy plate-page">{{ countryResource.error()?.message }}</p>
 } @else if (countryResource.isLoading()) {
-  <app-loading />
+  <p class="loading-copy plate-page">Buscando la ficha…</p>
 } @else {
   <not-found />
 }

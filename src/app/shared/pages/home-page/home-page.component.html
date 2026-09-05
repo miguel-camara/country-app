@@ -1,10 +1,7 @@
-<div class="hero min-h-screen" style="background-image: url(/assets/background.jpg)">
-  <div class="hero-overlay bg-opacity-60"></div>
-  <div class="hero-content text-neutral-content text-center">
-    <div class="max-w-md">
-      <h1 class="mb-5 text-5xl font-bold">Aplicación de países</h1>
-
-      <button routerLink="/country" class="btn btn-primary">Empezar</button>
-    </div>
+<section class="home-sheet">
+  <div class="home-card">
+    <h1>Country App</h1>
+    <p>Despliega una lámina de continente y compara países: bandera, capital y población.</p>
+    <a routerLink="/country/by-region" [queryParams]="{ region: 'Americas' }">Desplegar lámina</a>
   </div>
-</div>
+</section>

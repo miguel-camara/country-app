@@ -1,0 +1,36 @@
+{
+  "title": "Aprueba la composición del mapa mural",
+  "question": "Mismo mundo. Tres encuadres. ¿Cuál construimos? Di qué debe quedarse y qué se siente falso.",
+  "options": [
+    {
+      "id": "comp-a",
+      "label": "Lámina + ficha al margen",
+      "kicker": "OPTION ONE",
+      "thesis": "El mapa ocupa el aula; la comparación vive en una ficha clavada al lado.",
+      "viewport": "Américas a la izquierda, rail de papel a la derecha con México, Belice y Guatemala.",
+      "risk": "La ficha puede tapar el territorio si crece.",
+      "comp": ".impeccable/mocks/comp-wall-map-a.png"
+    },
+    {
+      "id": "comp-b",
+      "label": "Lámina a sangre + bandeja",
+      "thesis": "El continente llena el viewport; comparar es abrir la bandeja de abajo.",
+      "viewport": "Mapa a sangre, pin en México, tres placas horizontales en el borde inferior.",
+      "risk": "La bandeja pelea con filas largas de una región grande.",
+      "comp": ".impeccable/mocks/comp-wall-map-b.png"
+    },
+    {
+      "id": "comp-c",
+      "label": "Lista primero, mapa localizador",
+      "thesis": "Comparar es el trabajo; el mapa solo señala dónde estás.",
+      "viewport": "Ledger de países a la izquierda, mapa colgado más pequeño a la derecha.",
+      "risk": "Si el mapa se encoge demasiado, deja de ser una lámina de aula.",
+      "comp": ".impeccable/mocks/comp-wall-map-c.png"
+    }
+  ],
+  "steer": true,
+  "buildPath": {
+    "value": "comp",
+    "toggle": false
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "title": "Elige el mundo visual de Country App",
+  "question": "El dado asignó el tablero de salidas. Puedes quedártelo, tomar una alternativa o pedir otra mano.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Tablero de salidas",
+      "kicker": "THE ROLL",
+      "lineage": "Tableros split-flap / LED de aeropuerto",
+      "thesis": "Un continente es un tablero de destinos; cada país es una fila comparable de un vistazo.",
+      "palette": ["#141414", "#F5C518", "#E8E4D9", "#3DDC97", "#C43B3B"],
+      "materials": ["celdas split-flap", "bisel metálico", "luz de terminal de noche"],
+      "viewport": "Tablero ya en Américas: México, Belice, Guatemala con código, capital y población; palancas de región a la izquierda; una acción ámbar abre la ficha.",
+      "risk": "Puede leerse como un tracker de vuelos y no como un explorador de países.",
+      "raised": [
+        { "from": "cassette-deck", "raise": "Cada región es una palanca etiquetada que encaja; no hay tabs vagos." },
+        { "from": "creator-hardware", "raise": "Una sola tecla de commit; la fila activa reporta un valor vivo." },
+        { "from": "cloud-quarry", "raise": "Aire entre grupos de subregión; el tablero no es un muro plano." },
+        { "from": "orizuru", "raise": "La URL guarda la fila; volver de la ficha aterriza en el mismo destino." }
+      ],
+      "comp": ".impeccable/mocks/decision/assigned.png"
+    },
+    {
+      "id": "model-pick",
+      "label": "Mapa mural de aula",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "Mapa político enrollable de geografía escolar",
+      "thesis": "La región es la lámina desplegada; los países son territorios que se señalan y se comparan al margen.",
+      "palette": ["#1B3A4B", "#C4A35A", "#E8DCC8", "#2F6B4F", "#8B2E2E"],
+      "materials": ["papel barnizado", "barra de enrollar", "chinchetas"],
+      "viewport": "Lámina de Américas a sangre, leyenda de regiones, ficha lateral de México con bandera y población.",
+      "risk": "Es donde suelen aterrizar las apps de geografía: mapa político más fichas.",
+      "comp": ".impeccable/mocks/decision/model-pick.png"
+    },
+    {
+      "id": "challenger-hypercard",
+      "label": "Pila HyperCard",
+      "verdict": "competitive",
+      "lineage": "HyperCard: cartas en una caja de zapatos",
+      "thesis": "Cada país es una carta en la pila de su región; el siguiente destino está pintado en un botón.",
+      "palette": ["#FFFFFF", "#111111", "#7A7A7A"],
+      "materials": ["trama de 1 bit", "borde pintado a mano", "botón invertido"],
+      "viewport": "Carta México en blanco y negro: bandera punteada, capital, población; botones a Guatemala y a Américas.",
+      "case": "Sostiene identificación (fichas de estudio) y pierde claridad: una carta no deja comparar una región.",
+      "risk": "La pila es secuencial; comparar vecinos exige salir de la carta.",
+      "comp": ".impeccable/mocks/decision/challenger-hypercard.png",
+      "hero": "https://impeccable.style/worlds/cards/medium-native-hypercard-stack-shoebox-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/medium-native-hypercard-stack-shoebox.webp"
+    },
+    {
+      "id": "challenger-teletext",
+      "label": "Revista teletexto",
+      "verdict": "competitive",
+      "lineage": "Revistas Ceefax / teletext de 40×24",
+      "thesis": "La región es un número de página; capital y población son cifras cian en una parrilla sagrada.",
+      "palette": ["#000000", "#FFFF00", "#00FFFF", "#FFFFFF", "#FF0000"],
+      "materials": ["fósforo de TV", "mosaico de bloques", "rejilla 40×24"],
+      "viewport": "Página 201 Américas: cabecera COUNTRY APP, filas MX México Ciudad de México 131M en cian.",
+      "case": "Sostiene claridad de datos y pierde identificación: el estudiante no vive en Ceefax.",
+      "risk": "Si la parrilla se afloja, queda como nostalgia retro.",
+      "comp": ".impeccable/mocks/decision/challenger-teletext.png",
+      "hero": "https://impeccable.style/worlds/cards/broadcast-programming-teletext-service-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/broadcast-programming-teletext-service.webp"
+    },
+    {
+      "id": "challenger-cassette",
+      "label": "Fascia de cassette",
+      "verdict": "declined",
+      "lineage": "Deck futurista de aluminio y LEDs ámbar",
+      "thesis": "Las regiones son canales; cada país, una pista que se arma con un toggle.",
+      "palette": ["#C4B8A4", "#8A8F94", "#E67A14", "#1A1A1A"],
+      "materials": ["aluminio cepillado", "plástico beige", "escalera LED"],
+      "viewport": "Panel atornillado: seis toggles de región, VU de población, país activo en el counter.",
+      "case": "Pierde las dos: el alumno no se identifica con un deck, y los VU tapan la comparación.",
+      "kept": "Controles exclusivos y etiquetados: una región se encaja, no se subraya.",
+      "risk": "El aparato se come la geografía.",
+      "hero": "https://impeccable.style/worlds/cards/pop-culture-shelf-cassette-futurism-deck-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/pop-culture-shelf-cassette-futurism-deck.webp"
+    },
+    {
+      "id": "challenger-hardware",
+      "label": "Banco de hardware",
+      "verdict": "declined",
+      "lineage": "Instrumento de escritorio con keycaps y perilla",
+      "thesis": "Seis teclas de región, una perilla que recorre países, una tecla naranja que abre la ficha.",
+      "palette": ["#2B2E33", "#E6E0D4", "#FF5A1F", "#F2B705"],
+      "materials": ["chasis gunmetal", "keycaps bone", "perilla moleteada"],
+      "viewport": "Rejilla de teclas África–Antártida; pantalla ámbar con MX; tecla naranja ABRIR.",
+      "case": "Pierde las dos: el hardware no es el aula, y la perilla es sequential, no comparativa.",
+      "kept": "Una sola acción de commit y un valor vivo a la vez.",
+      "risk": "Se siente un synth, no un atlas.",
+      "hero": "https://impeccable.style/worlds/cards/design-canon-creator-hardware-bench-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/design-canon-creator-hardware-bench.webp"
+    },
+    {
+      "id": "challenger-cloud",
+      "label": "Cantera de nubes",
+      "verdict": "declined",
+      "lineage": "Mundos imposibles: bloques de clima",
+      "thesis": "Los continentes son estratos; cada país, un bloque recortado del cielo.",
+      "palette": ["#F4F7FB", "#7EB6D9", "#4A5560", "#C9D6DF"],
+      "materials": ["cúmulos aserrados", "vacío azul", "línea de corte plata"],
+      "viewport": "Estrato Américas abierto; bloques México y Belice con capital grabada en la cara de corte.",
+      "case": "Pierde las dos: el sueño no es el aula, y el clima esconde las cifras.",
+      "kept": "Aire entre grupos; densidad que sube y baja.",
+      "risk": "Hermoso y opaco para comparar población.",
+      "hero": "https://impeccable.style/worlds/cards/dream-surreal-impossible-worlds-cloud-quarry-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/dream-surreal-impossible-worlds-cloud-quarry.webp"
+    },
+    {
+      "id": "challenger-orizuru",
+      "label": "Secuencia orizuru",
+      "verdict": "declined",
+      "lineage": "Treinta y dos pliegues de un solo cuadrado",
+      "thesis": "Cada país es un pliegue recuperable en la hoja de su región.",
+      "palette": ["#C41E3A", "#F7F1E5", "#1A1A1A", "#C9A227"],
+      "materials": ["washi vermellón", "creases blancos", "tinta sumi"],
+      "viewport": "Hoja Américas; pliegue 14 México marcado en oro; capital y población al margen.",
+      "case": "Pierde las dos: origami no es geografía, y la secuencia impide ver vecinos a la vez.",
+      "kept": "Cada paso es recuperable; la URL es el pliegue.",
+      "risk": "Enseña un ritual, no una región.",
+      "hero": "https://impeccable.style/worlds/cards/paper-folds-pleats-deployable-orizuru-crane-sequence-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/paper-folds-pleats-deployable-orizuru-crane-sequence.webp"
+    }
+  ],
+  "reroll": {
+    "registers": ["safer", "bolder"]
+  },
+  "buildPath": {
+    "value": "comp",
+    "toggle": true
+  },
+  "canon": true,
+  "canonCard": {
+    "label": "El estándar de la categoría",
+    "thesis": "Buscador, filtros de región y tabla de banderas, ejecutado con oficio pleno.",
+    "palette": ["#1D232A", "#A6ADBB", "#605DFF", "#191D24"],
+    "materials": ["DaisyUI", "tabla densa", "cards de bandera"],
+    "viewport": "Top nav Por capital / país / región, input, tabla con ícono, bandera, nombre, capital, población.",
+    "risk": "Indistinguible de cualquier demo de REST Countries, por diseño.",
+    "comp": ".impeccable/mocks/decision/canon.png"
+  },
+  "steer": true
+}

@@ -1,40 +1,23 @@
-<section class="mx-10">
-  <h1 class="text-3xl">{{ country().name }}</h1>
-  <h2 class="text-xl font-thin">Población {{ country().population | number }}</h2>
-</section>
+<article class="plate-page">
+  <h1>{{ country().name }}</h1>
+  <img class="plate-flag" [src]="country().flagSvg" [alt]="'Bandera de ' + country().name" />
 
-<section class="stats shadow mx-5">
-  <div class="stat place-items-center">
-    <div class="stat-title">Población</div>
-    <div class="stat-value">{{ country().population | number }}</div>
-    <div class="stat-desc">Desde {{ currentYear() }}</div>
-  </div>
-
-  <div class="stat place-items-center">
-    <div class="stat-title">Nombre</div>
-    <div class="stat-value text-secondary">{{ country().name }}</div>
-    <div class="stat-desc text-secondary">{{ country().region }}</div>
-  </div>
-
-  <div class="stat place-items-center">
-    <div class="stat-title">Sub Region</div>
-    <div class="stat-value">{{ country().subRegion }}</div>
-    <div class="stat-desc">{{ country().region }}</div>
-  </div>
-
-  <div class="stat place-items-center">
-    <div class="stat-title">Bandera</div>
-    <div class="stat-value">{{ country().flag }}</div>
-    <div class="stat-desc">{{ country().subRegion }}</div>
-  </div>
-</section>
-
-<section class="diff aspect-video">
-  <div class="diff-item-1">
-    <img title="img" [alt]="country().name" [src]="country().flagSvg" />
-  </div>
-  <div class="diff-item-2">
-    <img title="img" class="blur brightness-75" [alt]="country().name" [src]="country().flagSvg" />
-  </div>
-  <div class="diff-resizer"></div>
-</section>
+  <dl class="plate-facts">
+    <div>
+      <dt>Capital</dt>
+      <dd>{{ country().capital || '—' }}</dd>
+    </div>
+    <div>
+      <dt>Población</dt>
+      <dd>{{ country().population | number }}</dd>
+    </div>
+    <div>
+      <dt>Región</dt>
+      <dd>{{ country().region }}</dd>
+    </div>
+    <div>
+      <dt>Subregión</dt>
+      <dd>{{ country().subRegion }}</dd>
+    </div>
+  </dl>
+</article>

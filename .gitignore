@@ -5,11 +5,35 @@
 /tmp
 /out-tsc
 /bazel-out
+*.tsbuildinfo
 
 # Node
 /node_modules
 npm-debug.log
 yarn-error.log
+
+# Angular
+.angular/
+
+# Local / generated assets (the app serves public/assets)
+/assets/
+
+# API sample dump
+/response.json
+
+# Impeccable working files (keep config, surfaces, and approved mocks)
+.impeccable/build/
+.impeccable/questions/
+.impeccable/review/
+.impeccable/config.local.json
+
+# Netlify
+.netlify/
+
+# Environment
+.env
+.env.*
+!.env.example
 
 # IDEs and editors
 .idea/
@@ -30,7 +54,6 @@ yarn-error.log
 .history/*
 
 # Miscellaneous
-/.angular/cache
 .sass-cache/
 /connect.lock
 /coverage
@@ -42,3 +65,4 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+desktop.ini

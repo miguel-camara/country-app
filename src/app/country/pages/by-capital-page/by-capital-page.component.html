@@ -1,16 +1,24 @@
-<search-input
-  (value)="query.set($event)"
-  placeholder="Buscar por capital"
-  [initialValue]="query()"
-  [debounceTime]="750"
-/>
+<div class="map-stage">
+  <img class="map-plate is-backdrop" src="/assets/plates/map-lookup.png" alt="" />
+  <img class="compass" src="/assets/plates/compass.png" alt="" />
+</div>
 
-@if (countryResource.hasValue()) {
-  <country-list [countries]="countryResource.value()" [hasValues]="true" />
-} @else {
-  <country-list [errorMessage]="countryResource.error()?.message" />
-}
+<aside class="rail">
+  <h1 class="rail-title">Por capital</h1>
+  <search-input
+    (value)="query.set($event)"
+    placeholder="Buscar destino por capital"
+    [initialValue]="query()"
+    [debounceTime]="750"
+  />
 
-@if (countryResource.isLoading()) {
-  <app-loading />
-}
+  @if (countryResource.isLoading()) {
+    <p class="loading-copy">Buscando en el índice…</p>
+  }
+
+  @if (countryResource.hasValue()) {
+    <country-list [countries]="countryResource.value()" [hasValues]="true" />
+  } @else {
+    <country-list [errorMessage]="countryResource.error()?.message" />
+  }
+</aside>
