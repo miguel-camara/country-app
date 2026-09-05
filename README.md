@@ -35,35 +35,35 @@ La interfaz está en español, usa routing con hash y no guarda cuentas ni persi
 
 ## Rutas
 
-| Ruta | Qué hace |
-|------|----------|
-| `/` | Portada. Enlace **Desplegar lámina** abre Américas. |
-| `/#/country/by-region?region=Europe` | Mapa de la región y lista de países. Sin región válida, cae en Américas. |
-| `/#/country/by-capital?query=tokyo` | Búsqueda por capital. |
-| `/#/country/by-country?query=mexico` | Búsqueda por nombre de país. |
-| `/#/country/by/MX` | Ficha del código alpha-2. Si no existe, muestra que no está en la lámina. |
-| `/#/country/**` | Redirige a `by-region`. |
+| Ruta                                 | Qué hace                                                                  |
+| ------------------------------------ | ------------------------------------------------------------------------- |
+| `/`                                  | Portada. Enlace **Desplegar lámina** abre Américas.                       |
+| `/#/country/by-region?region=Europe` | Mapa de la región y lista de países. Sin región válida, cae en Américas.  |
+| `/#/country/by-capital?query=tokyo`  | Búsqueda por capital.                                                     |
+| `/#/country/by-country?query=mexico` | Búsqueda por nombre de país.                                              |
+| `/#/country/by/MX`                   | Ficha del código alpha-2. Si no existe, muestra que no está en la lámina. |
+| `/#/country/**`                      | Redirige a `by-region`.                                                   |
 
 Regiones válidas: `Africa`, `Americas`, `Asia`, `Europe`, `Oceania`, `Antarctic`.
 
 ## Capturas
 
-![Portada y explorador](public/screens/screen-1.png)
+![Portada y explorador](public/screens/1.webp)
 
-![Búsqueda por capital](public/screens/screen-2.png)
+![Búsqueda por capital](public/screens/2.webp)
 
-![Búsqueda por país](public/screens/screen-3.png)
+![Búsqueda por país](public/screens/3.webp)
 
-![Ficha de país](public/screens/screen-4.png)
+![Ficha de país](public/screens/4.webp)
 
 ## Stack tecnológico
 
-| Tecnología     | Versión |
-|----------------|---------|
-| Angular        | 21      |
-| TypeScript     | 5.9     |
-| Tailwind CSS   | 4       |
-| RxJS           | 7       |
+| Tecnología   | Versión |
+| ------------ | ------- |
+| Angular      | 21      |
+| TypeScript   | 5.9     |
+| Tailwind CSS | 4       |
+| RxJS         | 7       |
 
 **Patrones usados:** componentes standalone, lazy loading del módulo `country`, `signals` + `rxResource`, `HashLocationStrategy`, mapper de la respuesta v5 y caché en memoria por consulta.
 
@@ -113,19 +113,19 @@ Abre [http://localhost:4200](http://localhost:4200) en el navegador.
 
 Viven en `src/environments/environment.ts` y `environment.development.ts`. No hay archivo `.env`.
 
-| Variable  | Uso |
-|-----------|-----|
+| Variable  | Uso                                                                      |
+| --------- | ------------------------------------------------------------------------ |
 | `API_URL` | Base de REST Countries v5 (`https://api.restcountries.com/countries/v5`) |
-| `API_KEY` | Bearer token enviado en `Authorization` |
+| `API_KEY` | Bearer token enviado en `Authorization`                                  |
 
 ## Scripts disponibles
 
-| Comando           | Descripción                                      |
-|-------------------|--------------------------------------------------|
-| `npm run start`   | Servidor de desarrollo y abre el navegador       |
-| `npm run build`   | Compila la app                                   |
-| `npm run watch`   | Compila en modo development y observa cambios    |
-| `npm run test`    | Ejecuta las pruebas                              |
+| Comando         | Descripción                                   |
+| --------------- | --------------------------------------------- |
+| `npm run start` | Servidor de desarrollo y abre el navegador    |
+| `npm run build` | Compila la app                                |
+| `npm run watch` | Compila en modo development y observa cambios |
+| `npm run test`  | Ejecuta las pruebas                           |
 
 ## Demo
 
