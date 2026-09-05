@@ -175,7 +175,7 @@ a {
 .map-fallback {
   display: grid;
   place-items: center;
-  background-image: url('/assets/plates/paper-texture.png');
+  background-image: url('/assets/plates/paper-texture.webp');
   background-size: 180px;
   color: var(--forest);
   font-family: var(--display);
@@ -214,7 +214,7 @@ a {
 .rail {
   position: relative;
   z-index: 1;
-  background-image: url('/assets/plates/paper-texture.png');
+  background-image: url('/assets/plates/paper-texture.webp');
   background-size: 220px;
   background-color: var(--paper);
   color: var(--paper-ink);
@@ -356,7 +356,7 @@ a {
 .plate-page {
   min-height: 70vh;
   padding: 2rem clamp(1rem, 4vw, 3rem);
-  background-image: url('/assets/plates/paper-texture.png');
+  background-image: url('/assets/plates/paper-texture.webp');
   background-size: 220px;
   background-color: var(--paper);
   color: var(--paper-ink);
@@ -410,7 +410,7 @@ a {
 .home-card {
   width: min(720px, 100%);
   padding: 2.5rem 2rem;
-  background-image: url('/assets/plates/paper-texture.png');
+  background-image: url('/assets/plates/paper-texture.webp');
   background-size: 220px;
   background-color: var(--paper);
   color: var(--paper-ink);

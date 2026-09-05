@@ -25,12 +25,12 @@ export const REGION_LABELS: Record<Region, string> = {
 };
 
 export const REGION_MAPS: Record<Region, string> = {
-  Africa: '/assets/plates/map-africa.png',
-  Americas: '/assets/plates/map-americas.png',
-  Asia: '/assets/plates/map-asia.png',
-  Europe: '/assets/plates/map-europe.png',
-  Oceania: '/assets/plates/map-oceania.png',
-  Antarctic: '/assets/plates/map-antarctic.png',
+  Africa: '/assets/plates/map-africa.webp',
+  Americas: '/assets/plates/map-americas.webp',
+  Asia: '/assets/plates/map-asia.webp',
+  Europe: '/assets/plates/map-europe.webp',
+  Oceania: '/assets/plates/map-oceania.webp',
+  Antarctic: '/assets/plates/map-antarctic.webp',
 };
 
-export const LOOKUP_MAP = '/assets/plates/map-lookup.png';
+export const LOOKUP_MAP = '/assets/plates/map-lookup.webp';
