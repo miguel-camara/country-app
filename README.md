@@ -1,65 +1,136 @@
-# CountryApp
+# Country App
 
 <p align="center">
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angular/angular-original.svg" height="50" alt="angular logo"/>&nbsp;
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" height="50" alt="tailwindcss logo" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg" height="35" alt="Angular" />
+  &nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" height="35" alt="TypeScript" />
+  &nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" height="35" alt="Tailwind CSS" />
 </p>
 
-**CountryApp** aplicacion para obtener la lista de paises y capital usando la API de **REST Countries**. Hecho con **Angular** y para los estilos **Tailwind CSS** y **daisyUI**.
+<p align="center">
+  Explorador de países en español: <strong>elige una región, compara vecinos y abre la ficha</strong> (bandera, capital y población) con datos de REST Countries.
+</p>
 
-## Run Locally
+<p align="center">
+  <a href="https://country-app-miguel.netlify.app/">Ver demo en vivo</a>
+</p>
 
-Clone the project
+---
 
-```bash
-  git clone https://github.com/miguel-camara/country-app.git
+## Descripción
+
+**Country App** es una SPA de Angular que consulta REST Countries v5 y presenta cada resultado en un mapa mural de aula. La unidad de exploración es la región: África, Américas, Asia, Europa, Oceanía y Antártida. La búsqueda por capital o por nombre es un atajo hacia el mismo marco, no una tabla suelta.
+
+La interfaz está en español, usa routing con hash y no guarda cuentas ni persistencia. Solo muestra lo que la API entrega: nombre, código, bandera, capital, población, región y subregión.
+
+## Características
+
+- **Lámina por región** — Cada continente tiene su propio mapa. El rail de papel lista países con bandera, capital y población para compararlos sin salir de la región.
+- **Atajo por capital** — El buscador consulta `/capitals` y deja la query en la URL. Sin resultados, el rail lo dice.
+- **Atajo por país** — El buscador consulta `/name` con el mismo patrón de query, carga y vacío.
+- **Ficha de país** — Ruta `/country/by/:code` con bandera, capital, población, región y subregión.
+- **Consulta en la URL** — Región y texto de búsqueda viajan en query params; se puede recargar o compartir el enlace.
+- **Caché en memoria** — El servicio recuerda capital, nombre y región ya consultados durante la sesión.
+
+## Rutas
+
+| Ruta | Qué hace |
+|------|----------|
+| `/` | Portada. Enlace **Desplegar lámina** abre Américas. |
+| `/#/country/by-region?region=Europe` | Mapa de la región y lista de países. Sin región válida, cae en Américas. |
+| `/#/country/by-capital?query=tokyo` | Búsqueda por capital. |
+| `/#/country/by-country?query=mexico` | Búsqueda por nombre de país. |
+| `/#/country/by/MX` | Ficha del código alpha-2. Si no existe, muestra que no está en la lámina. |
+| `/#/country/**` | Redirige a `by-region`. |
+
+Regiones válidas: `Africa`, `Americas`, `Asia`, `Europe`, `Oceania`, `Antarctic`.
+
+## Capturas
+
+![Portada y explorador](public/screens/screen-1.png)
+
+![Búsqueda por capital](public/screens/screen-2.png)
+
+![Búsqueda por país](public/screens/screen-3.png)
+
+![Ficha de país](public/screens/screen-4.png)
+
+## Stack tecnológico
+
+| Tecnología     | Versión |
+|----------------|---------|
+| Angular        | 21      |
+| TypeScript     | 5.9     |
+| Tailwind CSS   | 4       |
+| RxJS           | 7       |
+
+**Patrones usados:** componentes standalone, lazy loading del módulo `country`, `signals` + `rxResource`, `HashLocationStrategy`, mapper de la respuesta v5 y caché en memoria por consulta.
+
+## Estructura del proyecto
+
+```
+src/
+├── app/
+│   ├── country/              # Explorador: páginas, layout, servicio y mapper
+│   │   ├── components/       # Lista, buscador y pestañas
+│   │   ├── layouts/          # Marco del mapa mural
+│   │   ├── pages/            # Región, capital, país y ficha
+│   │   ├── interfaces/
+│   │   ├── mappers/
+│   │   └── services/
+│   └── shared/               # Home, footer, carga y no encontrado
+├── environments/             # API_URL y API_KEY
+└── styles/                   # Layout del mapa mural
 ```
 
-Go to the project directory
+## Instalación local
+
+Clona el repositorio:
 
 ```bash
-  cd country-app
+git clone https://github.com/miguel-camara/country-app.git
+cd country-app
 ```
 
-Install dependencies
+Instala las dependencias:
 
 ```bash
-  npm install
+npm install
 ```
 
-Start the server
+Configura `API_KEY` en `src/environments/environment.development.ts` (y en `environment.ts` para producción).
+
+Inicia el servidor de desarrollo:
 
 ```bash
-  npm run start
+npm run start
 ```
 
-## Environment Variables
+Abre [http://localhost:4200](http://localhost:4200) en el navegador.
 
-To run this project, you will need to add the following environment variables to your **environment.ts** files
+## Variables de entorno
 
-`API_URL`
+Viven en `src/environments/environment.ts` y `environment.development.ts`. No hay archivo `.env`.
+
+| Variable  | Uso |
+|-----------|-----|
+| `API_URL` | Base de REST Countries v5 (`https://api.restcountries.com/countries/v5`) |
+| `API_KEY` | Bearer token enviado en `Authorization` |
+
+## Scripts disponibles
+
+| Comando           | Descripción                                      |
+|-------------------|--------------------------------------------------|
+| `npm run start`   | Servidor de desarrollo y abre el navegador       |
+| `npm run build`   | Compila la app                                   |
+| `npm run watch`   | Compila en modo development y observa cambios    |
+| `npm run test`    | Ejecuta las pruebas                              |
 
 ## Demo
 
-[Demo](https://country-app-miguel.netlify.app/)
+🔗 [https://country-app-miguel.netlify.app/](https://country-app-miguel.netlify.app/)
 
-## Screenshots
+## Autor
 
-![App Screenshot](public/screens/screen-1.png)
-
-![App Screenshot](public/screens/screen-2.png)
-
-![App Screenshot](public/screens/screen-3.png)
-
-![App Screenshot](public/screens/screen-4.png)
-
-## Features
-
-- **Country App:** Aplicación en donde consumimos la API de REST Countries, especializada en países en donde podemos obtener países por nombre, así como información relacionada a ese país como fronteras, capital, etc.
-- **Por Capital:** En esta sección el texto ingresado en el buscador obtendrá una lista de países cuya capital coincide con el texto ingresado, en caso de no encontrar ninguno mostrará un mensaje de error.
-- **Por País:** En esta sección el texto ingresado en el buscador obtendrá una lista de países con base al texto ingresado, en caso de no encontrar ninguno mostrará un mensaje de error.
-- **Por Región:** En esta sección se encuentran la lista de regiones (America, Africa, Asia, etc). Al hacer clic en el elemento se mostrarán los países relacionados a esa región
-
-## Tech Stack
-
-**Frontend:** Angular, Tailwind CSS y daisyUI
+[Miguel Cámara](https://github.com/miguel-camara)
